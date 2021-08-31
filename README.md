@@ -14,7 +14,7 @@ The Gigatron architecture consists of 6 basic blocks of which the ALU is the lar
 
 The Harvard architecture dictates separate memory and buses are used for program and data and this was chosen as a convenient approach for a machine who's primary function is to send pixel data from RAM to the VGA interface. Whilst these memory spaces are considered separate, in the Gigatron they share some addressing resources, which leads to greater flexibility of addressing modes, especially useful for video generation. The Gigatron is sometimes referrred to as having a modified Harvard architecture.
 
-ROM, Program Counter, Address Register.
+### ROM, Program Counter, Address Register.
 
 The ROM is a 64K x 16-bit device which is addressed using the Program Counter PC.  The PC is made from four, 4-bit presettable, binary counters which normally increment on every clock cycle but can be preloaded when a local branch or a long-jump is required.  The upper 8 bits forms the page address and this is supplied from the Y register - a write only register. The lower 8-bits is supplied from the data bus, so a branch address may come from the data register, the accumulator or the input register.
 
@@ -24,7 +24,7 @@ This combination gives considerable flexibility allowing page addressing, page b
 
 Both the instruction byte and the data byte are held in registers which provides a simple single stage pipeline mechanism.
 
-RAM, Addressing Registers and Memory Addressing Unit.
+### RAM, Addressing Registers and Memory Addressing Unit.
 
 The RAM can be either a 32K byte or 64K byte. 19,200 bytes of the RAM is used to hold the 160 x 120 pixel data and this is addressed using special X and Y registers - named because they define the (x,y) coordinates of a pixel. The Gigatron was designed with the primary purpose of generating video, where a stream of pixels is sent from memory to the VGA interface.  The X register consists of an 8-bit presettable counter, which can be incremented on every instruction cycle, allowing a row of pixel data to be output under software control. The X register can also be preset in software and this permits smooth, horizonal scrolling effects to be generated. The Y register is used to address a given row of pixel data. Manipulating X and Y in software allows a full frame of video data to be sent to the screen, updating at 60Hz framerate.
 
@@ -32,7 +32,7 @@ The Y register has a dual purpose, it is also used for long jumps within the pro
 
 Between the X and Y registers and the RAM is a multiplexer known as the Memory Addressing Unit or MAU. This selects whether the RAM will be addressed from the X and Y video addressing registers (during video output) or from the data byte $dd held in the lower byte of the instruction word. This feature provides a neat solution to program access to RAM allowing indirect addressing of pages of data memory. It also permits a bytecode virtual machine interpreter to be implemented using the Von Neumann model where program and data are placed in the same RAM space.
 
-The ALU
+### The ALU
 
 The ALU is built entirely from combinational logic.  It has two 8-bit inputs for the operands, one 8-bit output for the result and 5 control lines that define the operation. An 8-bit register, the Accumulator, provides a temporary store for the ALU result.
 
@@ -48,7 +48,7 @@ The output of the ALU is placed onto the Result Bus. From here the output can be
 
 If the output is part of an arithmetical or logical operation for example  ADD A,B it is conventional to write it back to the Accumulator  AC, where it can be used in the next operation, or placed back onto the data bus so that it may be written to back memory.
 
-The Control Unit CU
+### The Control Unit CU
 
 The Control Unit forms the heart of the machine and co-ordinates the operation of all the other sections of the machine. Principally it consists of an instruction decoder, which takes the 8-bit instruction input from the instruction register and generates 19 discrete control signals.  Various bit fields within the instruction word define the ALU or memory operation, the addressing mode and the source or destination of the data. 
 
@@ -62,7 +62,7 @@ The Control Unit is almost entirely a combinational logic circuit where the 8-bi
 
 Instruction decoding is done using a combination of 3 - 8 line and 2 - 4 line decoders and a diode ROM matrix. The diode ROM provides a simple and efficient means to generate a selection of arbitrary logic functions without having to use additional logic gates. 
 
-Addressing Modes
+### Addressing Modes
 
 The Gigatron provides a range of addressing modes for accessing its RAM.
 
