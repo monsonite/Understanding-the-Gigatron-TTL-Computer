@@ -1,5 +1,6 @@
-# Understanding-the-Gigatron-TTL-Computer
+## Understanding-the-Gigatron-TTL-Computer
 
+![image](https://user-images.githubusercontent.com/758847/131498222-a7e9bcbf-f092-489f-b4e2-38d04f464eb4.png)
 
 The Gigatron is an 8-bit Harvard machine with a single stage pipeline which allows one instruction to be executed on every clock cycle.
 
