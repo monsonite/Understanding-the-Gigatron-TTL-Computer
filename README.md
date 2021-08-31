@@ -67,10 +67,18 @@ The Gigatron provides a range of addressing modes for accessing its RAM.
 
 Key:
 x                8-bit lower address byte of RAM
+
 y                8-bit upper address byte of RAM
+
 $dd              8-bit data constant held in the lower byte of the instruction
+
 [$dd]            8-bit Zero page addressing of the address pointed to by $dd
+
 [x]              8-bit Zero page addressing of the address pointed to by x
+
 [y,x]            16-bit  Absolute addressing of the byte 256y + x
+
 [y,$dd]          16-bit  Absolute addressing of the byte 256y + $dd
-[y,x++]          16-bit  Absolute addressing of the byte 256y + x, with post-increment of x 
+
+[y,x++]          16-bit  Absolute addressing of the byte 256y + x, with post-increment of x
+
